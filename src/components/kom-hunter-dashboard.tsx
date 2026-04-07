@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 import { ResultsPanel } from "@/components/results-panel";
@@ -165,6 +166,15 @@ export function KomHunterDashboard() {
 
   return (
     <main className="page-shell">
+      <div style={{ position: "absolute", top: "2rem", right: "2rem" }}>
+        <Image
+          src="/basic-logo.png"
+          alt="KOM Hunter Logo"
+          width={200}
+          height={200}
+          priority
+        />
+      </div>
       <section className="hero panel stack-lg">
         <div className="section-heading">
           <p className="eyebrow">KOM Hunter</p>
