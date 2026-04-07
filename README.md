@@ -1,5 +1,7 @@
 # KOM Hunter
 
+https://kom-hunter.vercel.app/
+
 `KOM Hunter` is a full-stack web application that leverages real-time performance analytics to identify personal competitive opportunities on Strava. The platform analyzes nearby segments to predict achievability based on athlete power metrics.
 
 ### About Strava & KOMs
