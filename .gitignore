@@ -19,6 +19,9 @@
 # coverage
 /coverage
 
+# documentation
+/docs
+
 # legacy data exports
 *.pyc
 __pycache__/

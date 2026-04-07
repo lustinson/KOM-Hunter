@@ -1,15 +1,10 @@
 # KOM Hunter
 
-`KOM Hunter` is a Next.js App Router project focused on nearby KOM analysis.
+`KOM Hunter` is a full-stack web application that leverages real-time performance analytics to identify personal competitive opportunities on Strava. The platform analyzes nearby segments to predict achievability based on athlete power metrics.
 
-## V1
+### About Strava & KOMs
 
-- Uses browser geolocation from the client.
-- Uses Strava OAuth with an encrypted HTTP-only session cookie.
-- Calls server-side Strava and OpenWeather clients.
-- Recomputes the rider power curve from recent Strava activity streams on demand.
-- Estimates required KOM power with a typed cycling physics model.
-- Compares segment demand against the rider's recent best power at the same duration.
+Strava is a leading platform for cyclists and runners to track activities and compete on leaderboards. A **KOM** (King of the Mountain) is the fastest time on a given segment—a coveted achievement in the cycling community. KOM Hunter helps riders discover which nearby KOMs they're likely to achieve based on their recent performance data.
 
 ## Architecture
 
