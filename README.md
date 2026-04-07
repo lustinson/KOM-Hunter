@@ -4,7 +4,7 @@
 
 ### About Strava & KOMs
 
-Strava is a leading platform for cyclists and runners to track activities and compete on leaderboards. A **KOM** (King of the Mountain) is the fastest time on a given segment—a coveted achievement in the cycling community. KOM Hunter helps riders discover which nearby KOMs they're likely to achieve based on their recent performance data.
+Strava is a leading platform for cyclists and runners to track activities and compete on leaderboards. A **KOM** (King of the Mountain) is the fastest time on a given segment, a coveted achievement in the cycling community. KOM Hunter helps riders discover which nearby KOMs they're likely to achieve based on their recent performance data.
 
 ## Architecture
 
