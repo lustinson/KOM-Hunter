@@ -3,11 +3,22 @@ import type { PowerCurve, RiderProfile, SegmentAnalysisResult } from "@/lib/type
 import type { StravaSegmentDetail } from "@/lib/types/strava";
 import type { WeatherSnapshot } from "@/lib/types/weather";
 
+//for now, removing wind in calculations. Needs more accurate navigation of wind direction relative to segment.
+const INCLUDE_WIND_IN_REQUIRED_POWER = false;
+
 export interface AnalyzeSegmentOptions {
   segment: StravaSegmentDetail;
   riderProfile: RiderProfile;
   powerCurve: PowerCurve;
   weather: WeatherSnapshot;
+}
+
+function getEffectiveHeadwindMps(weather: WeatherSnapshot) {
+  if (!INCLUDE_WIND_IN_REQUIRED_POWER) {
+    return 0;
+  }
+
+  return weather.windSpeedMps;
 }
 
 export function analyzeSegment(options: AnalyzeSegmentOptions): SegmentAnalysisResult | null {
@@ -24,7 +35,7 @@ export function analyzeSegment(options: AnalyzeSegmentOptions): SegmentAnalysisR
     averageGradePercent: options.segment.average_grade,
     riderWeightKg: options.riderProfile.riderWeightKg,
     bikeWeightKg: options.riderProfile.bikeWeightKg,
-    effectiveHeadwindMps: options.weather.windSpeedMps,
+    effectiveHeadwindMps: getEffectiveHeadwindMps(options.weather),
     roadSurface: options.riderProfile.roadSurface,
   });
 
