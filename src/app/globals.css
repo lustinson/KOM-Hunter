@@ -171,6 +171,15 @@ select {
   align-items: center;
 }
 
+.result-card-header {
+  align-items: flex-start;
+}
+
+.result-card-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .summary-card {
   display: grid;
   gap: 8px;

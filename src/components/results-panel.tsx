@@ -36,6 +36,10 @@ function formatCapabilityClass(status: CapabilityStatus) {
   return `badge badge-${status}`;
 }
 
+function getStravaSegmentUrl(segmentId: number) {
+  return `https://www.strava.com/segments/${segmentId}`;
+}
+
 export function ResultsPanel({ analysis, loading }: ResultsPanelProps) {
   if (loading) {
     return (
@@ -106,12 +110,22 @@ export function ResultsPanel({ analysis, loading }: ResultsPanelProps) {
       <div className="results-grid">
         {analysis.results.map((result) => (
           <article key={result.segmentId} className="panel stack-md">
-            <div className="row-between">
+            <div className="row-between result-card-header">
               <div>
                 <p className="eyebrow">{result.segmentName}</p>
                 <h3>{result.requiredPowerWatts} W required</h3>
               </div>
               <span className={formatCapabilityClass(result.capabilityStatus)}>{capabilityLabel[result.capabilityStatus]}</span>
+            </div>
+            <div className="result-card-actions">
+              <a
+                className="button secondary button-link"
+                href={getStravaSegmentUrl(result.segmentId)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View on Strava
+              </a>
             </div>
             <div className="metric-grid">
               <div>
