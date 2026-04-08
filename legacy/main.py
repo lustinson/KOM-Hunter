@@ -2,9 +2,6 @@ import requests
 from math import sin, cos, atan
 import geocoder
 
-STRAVA_ACCESS_TOKEN = "REMOVED"
-WEATHER_API_KEY = "REMOVED"
-
 COEF_DRAG = 0.65 #estimate drag coeff of 0.65 for tucked in drop bars: https://link.springer.com/article/10.1007/s12283-017-0234-1/tables/1
 FRONTAL_AREA = 0.36 #princeton article https://www.princeton.edu/~maelabs/hpt/mechanics/mecha_55.htm#:~:text=The%20upright%20position%20frequently%20used%20when%20riding,close%20to%20that%20for%20a%20flat%20plate!&text=When%20two%20cyclists%20ride%20in%20a%20drafting,a%2043%%20reduction%20in%20the%20drag%20force.
 CDA = COEF_DRAG*FRONTAL_AREA

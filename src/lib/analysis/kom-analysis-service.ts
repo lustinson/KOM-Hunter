@@ -8,6 +8,8 @@ import type { StravaRequestContext, StravaSegmentDetail } from "@/lib/types/stra
 import type { WeatherSnapshot } from "@/lib/types/weather";
 import { getCurrentWeather } from "@/lib/weather/client";
 
+const MIN_REQUIRED_POWER_WATTS = 100;
+
 const CAPABILITY_SORT_ORDER: Record<CapabilityStatus, number> = {
   capable: 0,
   stretch: 1,
@@ -83,6 +85,7 @@ export async function generateKomAnalysis(
       });
     })
     .filter((analysis): analysis is NonNullable<typeof analysis> => analysis !== null)
+    .filter((analysis) => analysis.requiredPowerWatts >= MIN_REQUIRED_POWER_WATTS)
     .sort((left, right) => {
       const statusDifference = CAPABILITY_SORT_ORDER[left.capabilityStatus] - CAPABILITY_SORT_ORDER[right.capabilityStatus];
 

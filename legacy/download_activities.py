@@ -2,9 +2,6 @@ from datetime import datetime, timedelta
 import requests
 import json 
 
-STRAVA_ACCESS_TOKEN = "REMOVED"
-
-
 def download_saved_activities(before, after, filename):
     activities_json = get_activities_between_dates(before, after)
     if activities_json:  # Only save if data is returned

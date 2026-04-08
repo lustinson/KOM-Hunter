@@ -168,7 +168,7 @@ export function KomHunterDashboard() {
     <main className="page-shell">
       <div style={{ position: "absolute", top: "2rem", right: "2rem" }}>
         <Image
-          src="/basic-logo.png"
+          src="/KOM-Hunter-basic-logo.png"
           alt="KOM Hunter Logo"
           width={200}
           height={200}

@@ -4,9 +4,6 @@ import json
 from datetime import datetime, timedelta
 import time
 
-STRAVA_ACCESS_TOKEN = "REMOVED"
-
-
 
 def get_activities_between_dates(before, after):
     url = f"https://www.strava.com/api/v3/athlete/activities?before={before}&after={after}&page=&per_page="
