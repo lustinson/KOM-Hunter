@@ -26,14 +26,32 @@ async function stravaFetch<T>(context: StravaRequestContext, path: string): Prom
   return (await response.json()) as T;
 }
 
-export async function getNearbySegments(context: StravaRequestContext, lat: number, lon: number, radiusDegrees = 0.1) {
-  const bounds = [lat - radiusDegrees, lon - radiusDegrees, lat + radiusDegrees, lon + radiusDegrees].join(",");
+function buildExplorePath(bounds: [number, number, number, number]) {
   const params = new URLSearchParams({
-    bounds,
+    bounds: bounds.join(","),
     activity_type: "riding",
   });
 
-  return stravaFetch<StravaExploreResponse>(context, `/segments/explore?${params.toString()}`);
+  return `/segments/explore?${params.toString()}`;
+}
+
+export async function getNearbySegments(context: StravaRequestContext, lat: number, lon: number, radiusDegrees = 0.1) {
+  const quadrants: Array<[number, number, number, number]> = [
+    [lat - radiusDegrees, lon - radiusDegrees, lat, lon],
+    [lat - radiusDegrees, lon, lat, lon + radiusDegrees],
+    [lat, lon - radiusDegrees, lat + radiusDegrees, lon],
+    [lat, lon, lat + radiusDegrees, lon + radiusDegrees],
+  ];
+
+  const responses = await Promise.all(
+    quadrants.map((bounds) => stravaFetch<StravaExploreResponse>(context, buildExplorePath(bounds))),
+  );
+
+  const segments = Array.from(
+    new Map(responses.flatMap((response) => response.segments).map((segment) => [segment.id, segment])).values(),
+  );
+
+  return { segments } satisfies StravaExploreResponse;
 }
 
 export async function getSegmentById(context: StravaRequestContext, segmentId: number) {
